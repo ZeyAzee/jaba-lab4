@@ -33,7 +33,7 @@ public class GraphicsDisplay extends JPanel {
     public GraphicsDisplay() {
         setBackground(Color.WHITE);
         graphicsStroke = new BasicStroke(5.0f, BasicStroke.CAP_BUTT,
-                BasicStroke.JOIN_ROUND, 10.0f, new float[]{4, 1, 2, 1, 1, 1, 2, 1, 4}, 0.0f);
+                BasicStroke.JOIN_ROUND, 10.0f, new float[]{14, 9, 12, 9, 9, 9, 12, 9, 14}, 0.0f);
         axisStroke = new BasicStroke(2.0f, BasicStroke.CAP_BUTT,
                 BasicStroke.JOIN_MITER, 10.0f, null, 0.0f);
         markerStroke = new BasicStroke(1.0f, BasicStroke.CAP_BUTT,
@@ -180,6 +180,9 @@ public class GraphicsDisplay extends JPanel {
             Point2D.Double labelPos = xyToPoint(0, maxY);
             canvas.drawString("y", (float) labelPos.getX() + 10,
                     (float) (labelPos.getY() - bounds.getY()));
+            Point2D.Double labelP = xyToPoint(0, 1);
+            canvas.drawString("1", (float)labelP.getX()+10, (float)(labelP.getY()+15));
+            canvas.draw(new Line2D.Double(xyToPoint(-0.05, 1), xyToPoint(0.05, 1)));
         }
         if (minY <= 0.0 && maxY >= 0.0) {
             canvas.draw(new Line2D.Double(xyToPoint(minX, 0), xyToPoint(maxX, 0)));
@@ -197,6 +200,10 @@ public class GraphicsDisplay extends JPanel {
             Point2D.Double labelPos = xyToPoint(maxX, 0);
             canvas.drawString("x", (float) (labelPos.getX() -
                     bounds.getWidth() - 10), (float) (labelPos.getY() + bounds.getY()));
+
+            Point2D.Double labelP = xyToPoint(1, 0);
+            canvas.drawString("1", (float)labelP.getX()-10, (float)(labelP.getY()+45));
+            canvas.draw(new Line2D.Double(xyToPoint(1, -0.05), xyToPoint(1, 0.05)));
         }
     }
 
